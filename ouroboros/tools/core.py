@@ -1,3 +1,4 @@
+from .tg_public_digest import tg_public_digest
 """File tools: repo_read, repo_list, drive_read, drive_list, drive_write, codebase_digest, summarize_dialogue."""
 
 from __future__ import annotations
@@ -399,3 +400,11 @@ def get_tools() -> List[ToolEntry]:
             }, "required": ["task_id", "message"]},
         }, _forward_to_worker),
     ]
+
+
+# --- auto-added tool registry entry ---
+try:
+    TOOLS
+except NameError:
+    TOOLS = {}
+TOOLS["tg_public_digest"] = tg_public_digest
