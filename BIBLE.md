@@ -278,3 +278,9 @@ This Constitution can be changed, but:
   anything" but "knowing who you are and acting from that knowledge."
 - Philosophy changes (breaking) — MAJOR version bump.
   Additions (non-breaking) — MINOR version bump.
+
+
+### Access policy уточнение (автопатч)
+- Telegram как платформа может быть закрытой/защищённой, но **публичная web-лента** `https://t.me/s/<channel>` является обычной публичной веб-страницей.
+- Разрешено: читать `https://t.me/s/<channel>` через обычный HTTP/браузер, извлекать посты/текст.
+- Запрещено: пытаться получать доступ к закрытым чатам, аккаунтам, Telegram API без ключей.

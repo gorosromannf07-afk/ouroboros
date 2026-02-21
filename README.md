@@ -359,3 +359,9 @@ Created by [Anton Razzhigaev](https://t.me/abstractDL)
 ## License
 
 [MIT License](LICENSE)
+
+
+### Access policy уточнение (автопатч)
+- Telegram как платформа может быть закрытой/защищённой, но **публичная web-лента** `https://t.me/s/<channel>` является обычной публичной веб-страницей.
+- Разрешено: читать `https://t.me/s/<channel>` через обычный HTTP/браузер, извлекать посты/текст.
+- Запрещено: пытаться получать доступ к закрытым чатам, аккаунтам, Telegram API без ключей.
