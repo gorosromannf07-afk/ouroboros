@@ -15,8 +15,9 @@ log = logging.getLogger(__name__)
 # ----------------------------
 def install_launcher_deps() -> None:
     subprocess.run(
-        [sys.executable, "-m", "pip", "install", "-q", "openai>=1.0.0", "requests"],
-        check=True,
+        [sys.executable, "-m", "pip", "install", "-q",
+         "--break-system-packages", "openai>=1.0.0", "requests"],
+        check=False,
     )
 
 install_launcher_deps()
@@ -152,11 +153,12 @@ if str(ANTHROPIC_API_KEY or "").strip():
 # ----------------------------
 # 2) Mount Drive
 # ----------------------------
-if not pathlib.Path("/content/drive/MyDrive").exists():
-    drive.mount("/content/drive")
+_LOCAL_BASE = pathlib.Path(os.environ.get("OUROBOROS_LOCAL_BASE", str(pathlib.Path.home() / "ouroboros_data")))
+if not pathlib.Path(_LOCAL_BASE / "drive" / "MyDrive").exists():
+    drive.mount(str(_LOCAL_BASE / "drive"))
 
-DRIVE_ROOT = pathlib.Path("/content/drive/MyDrive/Ouroboros").resolve()
-REPO_DIR = pathlib.Path("/content/ouroboros_repo").resolve()
+DRIVE_ROOT = (_LOCAL_BASE / "drive" / "MyDrive" / "Ouroboros").resolve()
+REPO_DIR = pathlib.Path(os.environ.get("OUROBOROS_REPO_DIR", str(pathlib.Path(__file__).parent))).resolve()
 
 for sub in ["state", "logs", "memory", "index", "locks", "archive"]:
     (DRIVE_ROOT / sub).mkdir(parents=True, exist_ok=True)
